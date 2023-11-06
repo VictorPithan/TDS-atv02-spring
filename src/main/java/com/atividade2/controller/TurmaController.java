@@ -1,9 +1,10 @@
 package com.atividade2.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atividade2.domain.dto.TurmaDTO;
@@ -30,20 +32,30 @@ public class TurmaController {
 
 
     @GetMapping
-    public ResponseEntity<List<TurmaDTO>> getTurmas() {
+    public ResponseEntity<List<TurmaDTO>> getTurmas(@RequestParam(required = false) Optional<Integer> ano) {
+        if (ano.isPresent()) {
+            return ResponseEntity.ok(turmaService.findAllByAno(ano.get()));
+        }
         return ResponseEntity.ok(turmaService.findAll());
     }
 
-    // @GetMapping("/{id}")
-    // public ResponseEntity<Object> getTurma(@PathVariable(value = "id") IdTurma id) {
-    //     // return ResponseEntity.ok(turmaService.findAll());
+    // @GetMapping
+    // public ResponseEntity<List<TurmaDTO>> getTurmas() {
+
+    //     return ResponseEntity.ok(turmaService.findAll());
     // }
 
-    @PostMapping
-    public ResponseEntity salvarAluno(@RequestBody @Valid TurmaDTO turma) {
-        TurmaModel turmaModel = turmaService.save(turma);
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getTurma(@PathVariable(value = "id") String id) {
+        var idTurmaAux = id.split("-");
+        IdTurma idTurma = new IdTurma(idTurmaAux[0], Integer.parseInt(idTurmaAux[1]), Integer.parseInt(idTurmaAux[2]));
+        Optional<TurmaModel> turmaModelOptional = turmaService.findById(idTurma);
+        return ResponseEntity.ok(turmaModelOptional.get());
+    }
 
-        return ResponseEntity.ok().body("Turma criada com sucesso!");
+    @PostMapping
+    public ResponseEntity<Object> salvarTurma(@RequestBody @Valid TurmaDTO turma) {   
+        return ResponseEntity.ok().body(turmaService.save(turma));
     }
     
 }

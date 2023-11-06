@@ -29,10 +29,16 @@ public class TurmaService {
     
     public List<TurmaDTO> findAll() {
 
-    return turmaRepository.findAll().stream()
+        return turmaRepository.findAll().stream()
+            .map(this::converte)
+            .collect(Collectors.toList());
+    }
+
+    public List<TurmaDTO> findAllByAno(Integer ano) {
+
+    return turmaRepository.findAllByAno(ano).stream()
         .map(this::converte)
         .collect(Collectors.toList());
-    
     }
 
     public TurmaModel save(TurmaDTO turmaDTO) {
@@ -49,4 +55,5 @@ public class TurmaService {
     public Optional<TurmaModel> findById(IdTurma id) {
         return turmaRepository.findById(id);
     }
+    
 }
