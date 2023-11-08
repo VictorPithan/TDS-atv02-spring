@@ -13,9 +13,11 @@ public interface TurmaRepository extends JpaRepository<TurmaModel, IdTurma> {
 
   List<TurmaModel> findAll();
 
-
   @Query("SELECT t FROM TurmaModel t WHERE t.id.ano = :ano")
   List<TurmaModel> findAllByAno(@Param("ano") Integer ano);
+
+  @Query("SELECT t FROM TurmaModel t WHERE t.id.sigla = :codigo")
+  List<TurmaModel> findAllByCodigo(@Param("codigo") String codigo);
   
 }
 

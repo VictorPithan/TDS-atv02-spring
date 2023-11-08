@@ -22,8 +22,6 @@ public class TurmaService {
     private TurmaDTO converte(TurmaModel turma) {
         TurmaDTO dto = new TurmaDTO();
         BeanUtils.copyProperties(turma, dto);
-        // dto.setMatricula(aluno.getMatricula());
-        // dto.setNome(aluno.getNome());
         return dto;
     }
     
@@ -36,9 +34,16 @@ public class TurmaService {
 
     public List<TurmaDTO> findAllByAno(Integer ano) {
 
-    return turmaRepository.findAllByAno(ano).stream()
-        .map(this::converte)
-        .collect(Collectors.toList());
+        return turmaRepository.findAllByAno(ano).stream()
+            .map(this::converte)
+            .collect(Collectors.toList());
+    }
+
+    public List<TurmaDTO> findAllByCodigo(String sigla) {
+
+        return turmaRepository.findAllByCodigo(sigla).stream()
+            .map(this::converte)
+            .collect(Collectors.toList());
     }
 
     public TurmaModel save(TurmaDTO turmaDTO) {
