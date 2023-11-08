@@ -32,13 +32,13 @@ public class TurmaController {
 
 
     @GetMapping
-    public ResponseEntity<List<TurmaDTO>> getTurmas(@RequestParam(required = false) Optional<Integer> ano, @RequestParam(required = false) Optional<String> codigo) {
+    public ResponseEntity<List<TurmaDTO>> getTurmas(@RequestParam(required = false) Optional<Integer> ano, @RequestParam(required = false) Optional<String> sigla) {
         if (ano.isPresent()) {
             return ResponseEntity.ok(turmaService.findAllByAno(ano.get()));
         }
 
-        if (codigo.isPresent()) {
-            return ResponseEntity.ok(turmaService.findAllByCodigo(codigo.get()));
+        if (sigla.isPresent()) {
+            return ResponseEntity.ok(turmaService.findAllBySigla(sigla.get()));
         }
 
         return ResponseEntity.ok(turmaService.findAll());

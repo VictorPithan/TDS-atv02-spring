@@ -39,9 +39,9 @@ public class TurmaService {
             .collect(Collectors.toList());
     }
 
-    public List<TurmaDTO> findAllByCodigo(String sigla) {
-
-        return turmaRepository.findAllByCodigo(sigla).stream()
+    public List<TurmaDTO> findAllBySigla(String sigla) {
+        
+        return turmaRepository.findAllBySigla(sigla).stream()
             .map(this::converte)
             .collect(Collectors.toList());
     }
