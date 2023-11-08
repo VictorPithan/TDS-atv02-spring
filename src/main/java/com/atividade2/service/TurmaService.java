@@ -38,7 +38,7 @@ public class TurmaService {
         List<TurmaModel> turmaFilteredByAno = turmaRepository.findAllByAno(ano);
 
         if (turmaFilteredByAno.isEmpty()) {
-            throw new NotFoundException("Recurso não encontrado");
+            throw new NotFoundException("Não foram encontradas turmas deste ano");
         }
 
         return turmaFilteredByAno.stream()
@@ -47,8 +47,14 @@ public class TurmaService {
     }
 
     public List<TurmaDTO> findAllBySigla(String sigla) {
+
+        List<TurmaModel> turmaFilteredBySigla = turmaRepository.findAllBySigla(sigla);
+
+        if (turmaFilteredBySigla.isEmpty()) {
+            throw new NotFoundException("Não for encontradas turmas com esta sigla");
+        }
         
-        return turmaRepository.findAllBySigla(sigla).stream()
+        return turmaFilteredBySigla.stream()
             .map(this::converte)
             .collect(Collectors.toList());
     }
