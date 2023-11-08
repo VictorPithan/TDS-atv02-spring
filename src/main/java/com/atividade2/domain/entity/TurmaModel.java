@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -12,6 +13,7 @@ import lombok.Data;
 public class TurmaModel {
 
     @EmbeddedId
+    @NotNull
     private IdTurma id;
     
     @Column(nullable = false)
