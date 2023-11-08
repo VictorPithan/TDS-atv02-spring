@@ -49,6 +49,11 @@ public class TurmaController {
         var idTurmaAux = id.split("-");
         IdTurma idTurma = new IdTurma(idTurmaAux[0], Integer.parseInt(idTurmaAux[1]), Integer.parseInt(idTurmaAux[2]));
         Optional<TurmaModel> turmaModelOptional = turmaService.findById(idTurma);
+
+        if (!turmaModelOptional.isPresent()) {
+            
+        }
+
         return ResponseEntity.ok(turmaModelOptional.get());
     }
 

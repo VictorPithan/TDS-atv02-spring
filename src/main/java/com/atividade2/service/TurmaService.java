@@ -12,6 +12,7 @@ import com.atividade2.domain.dto.TurmaDTO;
 import com.atividade2.domain.entity.IdTurma;
 import com.atividade2.domain.entity.TurmaModel;
 import com.atividade2.repository.TurmaRepository;
+import com.atividade2.service.exceptions.NotFoundException;
 
 @Service
 public class TurmaService {
@@ -34,7 +35,13 @@ public class TurmaService {
 
     public List<TurmaDTO> findAllByAno(Integer ano) {
 
-        return turmaRepository.findAllByAno(ano).stream()
+        List<TurmaModel> turmaFilteredByAno = turmaRepository.findAllByAno(ano);
+
+        if (turmaFilteredByAno.isEmpty()) {
+            throw new NotFoundException("Recurso não encontrado");
+        }
+
+        return turmaFilteredByAno.stream()
             .map(this::converte)
             .collect(Collectors.toList());
     }
