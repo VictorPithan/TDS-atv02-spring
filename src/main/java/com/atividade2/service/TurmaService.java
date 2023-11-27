@@ -51,7 +51,7 @@ public class TurmaService {
         List<TurmaModel> turmaFilteredBySigla = turmaRepository.findAllBySigla(sigla);
 
         if (turmaFilteredBySigla.isEmpty()) {
-            throw new NotFoundException("Não for encontradas turmas com esta sigla");
+            throw new NotFoundException("Não foram encontradas turmas com esta sigla");
         }
         
         return turmaFilteredBySigla.stream()
