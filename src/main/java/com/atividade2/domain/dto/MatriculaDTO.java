@@ -1,5 +1,8 @@
 package com.atividade2.domain.dto;
 
+import com.atividade2.domain.entity.AlunoModel;
+import com.atividade2.domain.entity.TurmaModel;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -10,8 +13,8 @@ public class MatriculaDTO {
     @NotNull
     private String id;
     @NotBlank
-    private String aluno;
+    private AlunoModel aluno;
     @NotBlank
-    private String turma;
+    private TurmaModel turma;
 
 }
