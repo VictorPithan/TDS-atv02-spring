@@ -12,11 +12,11 @@ import com.atividade2.service.exceptions.NotFoundException;
 @RestControllerAdvice
 public class ExceptionHandlerController {
   @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<ExceptionDTO> threatDuplicateEntry(DataIntegrityViolationException exception) {
-        int statusCode = HttpStatus.CONFLICT.value();
-        ExceptionDTO exceptionDto = new ExceptionDTO("Valor já inserido no banco de dados.", statusCode);
-        return ResponseEntity.status(statusCode).body(exceptionDto);
-    }
+  public ResponseEntity<ExceptionDTO> threatDuplicateEntry(DataIntegrityViolationException exception) {
+      int statusCode = HttpStatus.CONFLICT.value();
+      ExceptionDTO exceptionDto = new ExceptionDTO("Valor já inserido no banco de dados.", statusCode);
+      return ResponseEntity.status(statusCode).body(exceptionDto);
+  }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> threatStandardException(Exception exception) {

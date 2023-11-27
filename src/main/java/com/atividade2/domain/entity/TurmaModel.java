@@ -1,7 +1,5 @@
 package com.atividade2.domain.entity;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;

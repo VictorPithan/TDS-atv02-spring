@@ -20,8 +20,6 @@ import com.atividade2.domain.entity.IdTurma;
 import com.atividade2.domain.entity.TurmaModel;
 import com.atividade2.service.TurmaService;
 
-import jakarta.validation.Valid;
-
 @Validated
 @RequestMapping("/api/v1/turmas")
 @RestController
@@ -58,8 +56,16 @@ public class TurmaController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> salvarTurma(@RequestBody @Valid TurmaDTO turma) {   
+    public ResponseEntity<Object> salvarTurma(@RequestBody @Validated TurmaDTO turma) {   
         return ResponseEntity.ok().body(turmaService.save(turma));
     }
+
+
+
+    
+
+    // POST MATRICULAS
+    // POST ALUNOS
+    // VALIDATION
     
 }
