@@ -20,7 +20,7 @@ import com.atividade2.service.AlunoService;
 
 
 @Validated
-@RequestMapping("/api/v1/turmas/alunos")
+@RequestMapping("/api/v1/alunos")
 @RestController
 public class AlunoController {
     
@@ -41,7 +41,7 @@ public class AlunoController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> salvarTurma(@RequestBody @Validated AlunoDTO aluno) {
+    public ResponseEntity<Object> salvarAluno(@RequestBody @Validated AlunoDTO aluno) {
         return ResponseEntity.ok().body(alunoService.save(aluno));
     }
 }
