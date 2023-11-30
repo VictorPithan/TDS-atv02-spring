@@ -25,12 +25,12 @@ public class TurmaService {
         BeanUtils.copyProperties(turma, dto);
         return dto;
     }
-    
+
     public List<TurmaDTO> findAll() {
 
         return turmaRepository.findAll().stream()
-            .map(this::converte)
-            .collect(Collectors.toList());
+                .map(this::converte)
+                .collect(Collectors.toList());
     }
 
     public List<TurmaDTO> findAllByAno(Integer ano) {
@@ -42,8 +42,8 @@ public class TurmaService {
         }
 
         return turmaFilteredByAno.stream()
-            .map(this::converte)
-            .collect(Collectors.toList());
+                .map(this::converte)
+                .collect(Collectors.toList());
     }
 
     public List<TurmaDTO> findAllBySigla(String sigla) {
@@ -53,15 +53,16 @@ public class TurmaService {
         if (turmaFilteredBySigla.isEmpty()) {
             throw new NotFoundException("Não foram encontradas turmas com esta sigla");
         }
-        
+
         return turmaFilteredBySigla.stream()
-            .map(this::converte)
-            .collect(Collectors.toList());
+                .map(this::converte)
+                .collect(Collectors.toList());
     }
 
     public TurmaModel save(TurmaDTO turmaDTO) {
         TurmaModel turmaModel = new TurmaModel();
-        IdTurma idTurma = new IdTurma(turmaDTO.getId().getSigla(), turmaDTO.getId().getAno(), turmaDTO.getId().getSemestre());
+        IdTurma idTurma = new IdTurma(turmaDTO.getId().getSigla(), turmaDTO.getId().getAno(),
+                turmaDTO.getId().getSemestre());
         turmaModel.setNome(turmaDTO.getNome());
         turmaModel.setVagas_minimas(turmaDTO.getVagas_minimas());
         turmaModel.setVagas_maximas(turmaDTO.getVagas_maximas());
@@ -73,5 +74,5 @@ public class TurmaService {
     public Optional<TurmaModel> findById(IdTurma id) {
         return turmaRepository.findById(id);
     }
-    
+
 }

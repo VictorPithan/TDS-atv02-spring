@@ -1,5 +1,7 @@
 package com.atividade2.domain.dto;
 
+import java.util.UUID;
+
 import com.atividade2.domain.entity.AlunoModel;
 import com.atividade2.domain.entity.TurmaModel;
 
@@ -11,7 +13,7 @@ import lombok.Data;
 public class MatriculaDTO {
 
     @NotNull
-    private String id;
+    private UUID id;
     @NotBlank
     private AlunoModel aluno;
     @NotBlank

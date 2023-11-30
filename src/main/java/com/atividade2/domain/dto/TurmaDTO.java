@@ -1,6 +1,5 @@
 package com.atividade2.domain.dto;
 
-
 import com.atividade2.domain.entity.IdTurma;
 
 import jakarta.validation.constraints.Max;
@@ -11,7 +10,7 @@ import lombok.Data;
 
 @Data
 public class TurmaDTO {
-  
+
     @NotNull
     private IdTurma id;
     @NotBlank
@@ -23,5 +22,3 @@ public class TurmaDTO {
     @Max(value = 20)
     private Integer vagas_maximas;
 }
-    
-

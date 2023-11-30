@@ -1,6 +1,5 @@
 package com.atividade2.domain.entity;
 
-import java.util.List;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -13,13 +12,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @Table(name = "matriculas")
 @Entity
 @NoArgsConstructor
@@ -37,9 +37,9 @@ public class MatriculaModel {
 
     @ManyToOne
     @JoinColumns({
-        @JoinColumn(name = "turma_sigla", referencedColumnName = "sigla"),
-        @JoinColumn(name = "turma_ano", referencedColumnName = "ano"),
-        @JoinColumn(name = "turma_semestre", referencedColumnName = "semestre")
+            @JoinColumn(name = "turma_sigla", referencedColumnName = "sigla"),
+            @JoinColumn(name = "turma_ano", referencedColumnName = "ano"),
+            @JoinColumn(name = "turma_semestre", referencedColumnName = "semestre")
     })
     @JsonIgnoreProperties("matricula")
     private TurmaModel turma;

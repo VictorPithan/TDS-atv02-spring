@@ -1,0 +1,17 @@
+GET http://localhost:8080/api/v1/alunos HTTP/1.1
+
+###
+
+GET http://localhost:8080/api/v1/alunos/b48c039b-7e6c-43d7-b51c-6320d42bb018 HTTP/1.1
+
+###
+
+GET http://localhost:8080/api/v1/turmas HTTP/1.1
+
+###
+
+GET http://localhost:8080/api/v1/matriculas HTTP/1.1
+
+###
+
+GET http://localhost:8080/api/v1/matriculas/842c9830-9733-458d-b1b8-612ccdbe53e8 HTTP/1.1

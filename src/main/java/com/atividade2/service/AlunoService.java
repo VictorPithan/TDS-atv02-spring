@@ -15,7 +15,7 @@ import com.atividade2.repository.AlunoRepository;
 
 @Service
 public class AlunoService {
-    
+
     @Autowired
     AlunoRepository alunoRepository;
 
@@ -27,8 +27,8 @@ public class AlunoService {
 
     public List<AlunoDTO> findAll() {
         return alunoRepository.findAll().stream()
-            .map(this::converte)
-            .collect(Collectors.toList());
+                .map(this::converte)
+                .collect(Collectors.toList());
     }
 
     public Optional<AlunoModel> findById(UUID id) {
@@ -37,15 +37,13 @@ public class AlunoService {
 
     public AlunoModel save(AlunoDTO alunoDTO) {
         AlunoModel alunoModel = new AlunoModel();
-        
+
         alunoModel.setNome(alunoDTO.getNome());
         alunoModel.setSobrenome(alunoDTO.getSobrenome());
         alunoModel.setCpf(alunoDTO.getCpf());
         alunoModel.setEmail(alunoDTO.getEmail());
-        
 
         return alunoRepository.save(alunoModel);
     }
-
 
 }
